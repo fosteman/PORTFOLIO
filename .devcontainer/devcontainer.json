@@ -1,0 +1,20 @@
+{
+  "name": "osd-ros2-humble",
+  "image": "osrf/ros:humble-desktop",
+  "remoteUser": "root",
+  "workspaceFolder": "/workspaces/osd",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-iot.vscode-ros",
+        "charliermarsh.ruff"
+      ]
+    }
+  },
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspaces/osd,type=bind,consistency=cached"
+  ],
+  "postCreateCommand": "bash -lc 'apt-get update && apt-get install -y git python3-pip && rm -rf /var/lib/apt/lists/*'",
+  "overrideCommand": false
+}
