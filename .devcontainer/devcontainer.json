@@ -2,11 +2,11 @@
   "name": "osd-ros2-humble",
   "image": "osrf/ros:humble-desktop",
   "remoteUser": "root",
+  "containerEnv": {
+    "XDG_RUNTIME_DIR": "/tmp/xdg-runtime-root"
+  },
   "workspaceFolder": "/workspaces/osd",
-  "mounts": [
-    "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,consistency=cached"
-  ],
-  "postStartCommand": "bash -lc 'git config --global --get user.name >/dev/null 2>&1 || true'",
-  "postCreateCommand": "bash -lc 'apt-get update && apt-get install -y git python3-pip && rm -rf /var/lib/apt/lists/*'",
+  "postCreateCommand": "bash -lc 'mkdir -p /tmp/xdg-runtime-root && chmod 700 /tmp/xdg-runtime-root && apt-get update && apt-get install -y git python3-pip && rm -rf /var/lib/apt/lists/*'",
+  "postStartCommand": "bash -lc 'mkdir -p /tmp/xdg-runtime-root && chmod 700 /tmp/xdg-runtime-root && git config --global --get user.name >/dev/null 2>&1 || true'",
   "overrideCommand": false
 }
