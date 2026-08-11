@@ -3,6 +3,9 @@
   "image": "osrf/ros:humble-desktop",
   "remoteUser": "root",
   "workspaceFolder": "/workspaces/osd",
+  "remoteEnv": {
+    "SSH_AUTH_SOCK": "/ssh-agent"
+  },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -13,8 +16,11 @@
     }
   },
   "mounts": [
-    "source=${localWorkspaceFolder},target=/workspaces/osd,type=bind,consistency=cached"
+    "source=${localWorkspaceFolder},target=/workspaces/osd,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,consistency=cached",
+    "source=${localEnv:SSH_AUTH_SOCK},target=/ssh-agent,type=bind"
   ],
+  "postStartCommand": "bash -lc 'git config --global --get user.name >/dev/null 2>&1 || true; ssh-add -l >/dev/null 2>&1 || true'",
   "postCreateCommand": "bash -lc 'apt-get update && apt-get install -y git python3-pip && rm -rf /var/lib/apt/lists/*'",
   "overrideCommand": false
 }
