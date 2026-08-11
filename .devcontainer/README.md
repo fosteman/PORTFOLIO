@@ -2,6 +2,14 @@
 
 This setup uses the public ROS 2 Humble image and keeps credentials out of the image and repo.
 
+```
+apt-get update && apt-get install -y \
+ros-jazzy-ros-gz \
+ros-jazzy-ardupilot-gazebo \
+python3-colcon-common-extensions \
+git
+```
+
 If you need Git access to private remotes from inside the container, use one of these host-side approaches:
 
 - forward your SSH agent into the container

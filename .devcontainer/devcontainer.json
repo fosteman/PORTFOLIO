@@ -1,7 +1,7 @@
 {
   "name": "osd-ros2-humble",
-  "image": "althack/ros2:jazzy-cuda-full",
-  "remoteUser": "tim",
+  "image": "osrf/ros:jazzy-desktop-full-noble",
+  "remoteUser": "root",
   "containerEnv": {
     "XDG_RUNTIME_DIR": "/tmp/xdg-runtime-root"
   },
